@@ -2,7 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const routes = require("../apiExpress/routes/routes");
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 //Uso body-parser para el parseo de objetos json
