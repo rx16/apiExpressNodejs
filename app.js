@@ -42,20 +42,20 @@ const sql = mysql.createConnection(config);
 
 //Listar todos los usuarios
 app.get("/users", (request, response) => {
-  response.send(users);
-  //  sql.query("SELECT * FROM users", (error, result) => {
-  //    if (error) throw error;
-  //    response.send(result);
-  //  });
+  // response.send(users);
+  sql.query("SELECT * FROM users", (error, result) => {
+    if (error) throw error;
+    response.send(result);
+  });
 });
 //Listar datos de un usuario pasando su id como parametro en la url
 app.get("/users/:id", (request, response) => {
   const id = request.params.id;
-  response.send(users[id]);
-  //  sql.query("SELECT * FROM users WHERE id = ?", id, (error, result) => {
-  //    if (error) throw error;
-  //    response.send(result);
-  //  });
+  // response.send(users[id]);
+  sql.query("SELECT * FROM users WHERE id = ?", id, (error, result) => {
+    if (error) throw error;
+    response.send(result);
+  });
 });
 /*
 //Añadir un nuevo usuario
