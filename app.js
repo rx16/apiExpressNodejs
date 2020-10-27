@@ -34,9 +34,7 @@ const config = {
   user: "bdb1fd02f5388a",
   password: "512f33a3",
   database: "heroku_7035080c4c6f3b2",
-  ssl: {
-    mode: "disable",
-  },
+  ssl:0
 };
 const sql = mysql.createConnection(config);
 
