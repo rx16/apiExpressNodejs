@@ -18,11 +18,11 @@ const config = {
   password: "512f33a3",
   database: "heroku_7035080c4c6f3b2",
 };
-const pool = mysql.createPool(config);
+const sql = mysql.createConnection(config);
 
 //Listar todos los usuarios
 app.get("/users", (request, response) => {
-  pool.query("SELECT * FROM users", (error, result) => {
+  sql.query("SELECT * FROM users", (error, result) => {
     if (error) throw error;
     response.send(result);
   });
@@ -30,14 +30,14 @@ app.get("/users", (request, response) => {
 //Listar datos de un usuario pasando su id como parametro en la url
 app.get("/users/:id", (request, response) => {
   const id = request.params.id;
-  pool.query("SELECT * FROM users WHERE id = ?", id, (error, result) => {
+  sql.query("SELECT * FROM users WHERE id = ?", id, (error, result) => {
     if (error) throw error;
     response.send(result);
   });
 });
 //Añadir un nuevo usuario
 app.post("/users", (request, response) => {
-  pool.query("INSERT INTO users SET ?", request.body, (error, result) => {
+  sql.query("INSERT INTO users SET ?", request.body, (error, result) => {
     if (error) throw error;
     response.status(201).send(`Usuario ingresado con id: ${result.insertId}`);
   });
@@ -45,7 +45,7 @@ app.post("/users", (request, response) => {
 //Editar los datos de un usuario
 app.put("/users/:id", (request, response) => {
   const id = request.params.id;
-  pool.query(
+  sql.query(
     "UPDATE users SET ? WHERE id = ?",
     [request.body, id],
     (error, result) => {
