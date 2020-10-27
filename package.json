@@ -2,7 +2,7 @@
   "name": "apiexpress",
   "version": "1.0.0",
   "description": "(API Express on Node.js Server)",
-  "main": "index.js",
+  "main": "app.js",
   "engines": {
     "node": "v14.13.0"
   },
