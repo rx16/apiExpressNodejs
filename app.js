@@ -1,7 +1,7 @@
 //Requerimientos necesarios para poner en funcionamiento el servidor
 const express = require("express");
 const bodyParser = require("body-parser");
-const routes = require("../apiExpressNodejs/routes/routes");
+const routes = require("./routes/routes");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
