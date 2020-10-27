@@ -1,6 +1,7 @@
 //Requerimientos necesarios para poner en funcionamiento el servidor
 const express = require("express");
 const bodyParser = require("body-parser");
+const mysql = require("mysql");
 //const routes = require("../apiExpress/routes/routes");
 const PORT = process.env.PORT || 3001;
 const pool = require("../data/config");
@@ -9,6 +10,15 @@ const app = express();
 //Uso body-parser para el parseo de objetos json
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//Configuracion para base de datos de heroku
+const config = {
+  host: "us-cdbr-east-02.cleardb.com",
+  user: "bdb1fd02f5388a",
+  password: "512f33a3",
+  database: "heroku_7035080c4c6f3b2",
+};
+const pool = mysql.createPool(config);
 
 //Listar todos los usuarios
 app.get("/users", (request, response) => {
