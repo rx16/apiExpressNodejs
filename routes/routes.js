@@ -5,11 +5,11 @@ const pool = require("../data/config");
 
 // Enrutador de endpoints
 const router = (app) => {
-  /* app.get("/", (request, response) => {
+   app.get("/", (request, response) => {
     response.send({
       message: "Mi API REST con Node.js y Express",
     });
-  }); */
+  }); 
   //Listar todos los usuarios
   app.get("/users", (request, response) => {
     pool.query("SELECT * FROM users", (error, result) => {

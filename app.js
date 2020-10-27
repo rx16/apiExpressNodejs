@@ -1,33 +1,17 @@
 //Requerimientos necesarios para poner en funcionamiento el servidor
 const express = require("express");
 const bodyParser = require("body-parser");
-const mysql = require("mysql");
-//const routes = require("../apiExpress/routes/routes");
+const routes = require("../apiExpress/routes/routes");
 const PORT = process.env.PORT || 3001;
-//const pool = require("../data/config");
 const app = express();
 
 //Uso body-parser para el parseo de objetos json
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const users = [
-  {
-    id: "1",
-    dni: "12456332",
-    name: "Pedro Verona",
-    tel: "2954664588",
-    email: "pedritov@gmail.com",
-  },
-  {
-    id: "2",
-    dni: "23415311",
-    name: "Laura Quiroga",
-    tel: "2302354491",
-    email: "lauraquiroga@gmail.com",
-  },
-];
-
+//LLama al enrutador
+routes(app);
+/*
 //Configuracion para base de datos de heroku
 const config = {
   host: "us-cdbr-east-02.cleardb.com",
@@ -55,7 +39,7 @@ app.get("/users/:id", (request, response) => {
     response.send(result);
   });
 });
-/*
+
 //Añadir un nuevo usuario
 app.post("/users", (request, response) => {
   sql.query("INSERT INTO users SET ?", request.body, (error, result) => {
