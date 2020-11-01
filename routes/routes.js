@@ -17,6 +17,20 @@ const router = (app) => {
       response.send(result);
     });
   });
+  //Listar todos los lugares
+  app.get("/places", (request, response) => {
+    pool.query("SELECT * FROM place", (error, result) => {
+      if (error) throw error;
+      response.send(result);
+    });
+  });
+  //Listar todas las visitas
+  app.get("/visits", (request, response) => {
+    pool.query("SELECT * FROM visit", (error, result) => {
+      if (error) throw error;
+      response.send(result);
+    });
+  });
   //Listar datos de un usuario pasando su id como parametro en la url
   app.get("/users/:id", (request, response) => {
     const id = request.params.id;
